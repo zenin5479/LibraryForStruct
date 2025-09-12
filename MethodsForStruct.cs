@@ -4,11 +4,11 @@ using System.Text;
 
 namespace LibraryForStruct
 {
-   public class Class1
+   public class MethodsForStruct
    {
 
 
-      Метод записи массива структур в текстовый файл
+      //Метод записи массива структур в текстовый файл
       public static void WriteStructFileTxt(string path, Student[] students)
       {
          FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write);
@@ -26,7 +26,7 @@ namespace LibraryForStruct
          writer.Close();
       }
 
-      Метод чтения массива структур из текстового файла
+      //Метод чтения массива структур из текстового файла
       public static Student[] ReadStructFileTxt(string path, string nameFile)
       {
          Student[] arrayStudent = { };
@@ -159,7 +159,7 @@ namespace LibraryForStruct
          return arrayStudent;
       }
 
-      Метод сортировки массива структур по возрасту
+      //Метод сортировки массива структур по возрасту
       public static void BubbleSortByAge(Student[] students)
       {
          Console.WriteLine("Отсортированный массив структур по возрасту:");
