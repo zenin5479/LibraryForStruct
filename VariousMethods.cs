@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryForStruct
 {
-   public class MethodsForStruct
+   public class VariousMethods
    {
       // Определяем структуру
       public struct Student
