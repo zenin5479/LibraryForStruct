@@ -6,20 +6,20 @@ namespace LibraryForStruct
 {
    public class VariousMethods
    {
-      //// Определяем структуру
-      //public struct Student
-      //{
-      //   public string Group;
-      //   public string Surname;
-      //   public string Name;
-      //   public string Dadsname;
-      //   public int Year;
-      //   public char Gender;
-      //   public int Physics;
-      //   public int Math;
-      //   public int Inf;
-      //   public double Grant;
-      //}
+      // Определяем структуру
+      public struct Student
+      {
+         public string Group;
+         public string Surname;
+         public string Name;
+         public string Dadsname;
+         public int Year;
+         public char Gender;
+         public int Physics;
+         public int Math;
+         public int Inf;
+         public double Grant;
+      }
 
       // Метод записи массива структур в текстовый файл
       public static void WriteStructFileTxt(string path, Student[] students)
