@@ -28,7 +28,6 @@ namespace LibraryForStruct
          public double Profit;
       }
 
-
       // Метод записи массива структур в текстовый файл
       public static void WriteStructFileTxt(string path, Student[] students)
       {
