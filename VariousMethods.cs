@@ -553,6 +553,124 @@ namespace LibraryForStruct
          return higher;
       }
 
+      // Метод расчета среднего профицита по всем подразделениям
+      public static double AverageScore(Business[] firm)
+      {
+         double medium;
+         double allSubjects = 0;
+         int i = 0;
+         while (i < firm.Length)
+         {
+            double bySubjects = firm[i].Profit;
+            allSubjects += bySubjects;
+            i++;
+         }
 
+         medium = allSubjects / firm.Length;
+         Console.WriteLine("Средний профицит по всем подразделениям: {0:f}", medium);
+         return medium;
+      }
+
+      // Метод поиска подразделений профицит которых выше, чем средний профицит
+      public static void AverageHigherScore(string path, Business[] firm, double medium)
+      {
+         Console.WriteLine("Подразделения профицит которых выше, чем средний профицит:");
+         // Определяем количество подразделений удовлетворяющих условию для расчета размера массива структур
+         int count = 0;
+         int i = 0;
+         while (i < firm.Length)
+         {
+            double bySubjects = firm[i].Profit;
+            if (bySubjects > medium)
+            {
+               count++;
+            }
+
+            i++;
+         }
+
+         Business[] averageHigher = new Business[count];
+         int j = 0;
+         int k = 0;
+         while (j < firm.Length)
+         {
+            double bySubjects = firm[j].Profit;
+            if (bySubjects > medium)
+            {
+               averageHigher[k] = firm[j];
+               Console.WriteLine("{0} {1}", firm[j].Company, firm[j].Profit);
+               k++;
+            }
+
+            j++;
+         }
+
+         // Запись массива структур в бинарный файл
+         FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+         BinaryWriter writer = new BinaryWriter(stream, Encoding.UTF8);
+         writer.Write(averageHigher.Length);
+         int m = 0;
+         while (m < averageHigher.Length)
+         {
+            // Запись строки в UTF-8 с предварительной длиной
+            writer.Write(averageHigher[m].Company);
+            writer.Write(averageHigher[m].Profit);
+            m++;
+         }
+
+         stream.Close();
+         writer.Close();
+      }
+
+      // Метод поиска подразделений профицит которых ниже, чем средний профицит
+      public static void AverageLowScore(string path, Business[] firm, double medium)
+      {
+         Console.WriteLine("Подразделения профицит которых ниже, чем средний профицит:");
+         // Определяем количество подразделений удовлетворяющих условию для расчета размера массива структур
+         int count = 0;
+         int i = 0;
+         while (i < firm.Length)
+         {
+            double bySubjects = firm[i].Profit;
+            if (bySubjects > medium)
+            {
+               count++;
+            }
+
+            i++;
+         }
+
+         Business[] averageHigher = new Business[count];
+         int j = 0;
+         int k = 0;
+         while (j < firm.Length)
+         {
+            double bySubjects = firm[j].Profit;
+            if (bySubjects < medium)
+            {
+               averageHigher[k] = firm[j];
+               Console.WriteLine("{0} {1}", firm[j].Company, firm[j].Profit);
+               k++;
+            }
+
+            j++;
+         }
+
+         // Запись массива структур в бинарный файл
+         FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+         BinaryWriter writer = new BinaryWriter(stream, Encoding.UTF8);
+         writer.Write(averageHigher.Length);
+         int m = 0;
+         while (m < averageHigher.Length)
+         {
+            // Запись строки в UTF-8 с предварительной длиной
+            writer.Write(averageHigher[m].Company);
+            writer.Write(averageHigher[m].Profit);
+            m++;
+         }
+
+         stream.Close();
+         writer.Close();
+      }
    }
 }
