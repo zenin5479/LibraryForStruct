@@ -21,6 +21,14 @@ namespace LibraryForStruct
          public double Grant;
       }
 
+      public struct Business
+      {
+         public string Company;
+         public string Department;
+         public double Profit;
+      }
+
+
       // Метод записи массива структур в текстовый файл
       public static void WriteStructFileTxt(string path, Student[] students)
       {
@@ -459,6 +467,90 @@ namespace LibraryForStruct
                person.Gender, person.Physics, person.Math, person.Inf, person.Grant);
             index++;
          }
+      }
+
+      // Метод записи массива структур в текстовый файл
+      public static void WriteStructFileTxt(string path, Business[] firm)
+      {
+         FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write);
+         StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+         int i = 0;
+         while (i < firm.Length)
+         {
+            Business person = firm[i];
+            writer.WriteLine("{0} {1} {2}", person.Company, person.Department, person.Profit);
+            i++;
+         }
+
+         writer.Close();
+      }
+
+      // Метод поиска прибыльных и убыточных подразделений
+      public static string ProfitAnalysis(Business[] firm)
+      {
+         // Определяем количество прибыльных и убыточных подразделений
+         int profitHigher = 0;
+         int profitLow = 0;
+         int i = 0;
+         while (i < firm.Length)
+         {
+            if (firm[i].Profit > 0)
+            {
+               profitHigher++;
+            }
+            else
+            {
+               profitLow++;
+            }
+
+            i++;
+         }
+
+         string result = null;
+         if (profitHigher > profitLow)
+         {
+            string higher = "Прибыльных подразделений " + profitHigher + " больше чем убыточных " + profitLow;
+            Console.WriteLine(higher);
+            result = higher;
+         }
+         if (profitHigher < profitLow)
+         {
+            string low = "Убыточных подразделений " + profitLow + " больше чем прибыльных " + profitHigher;
+            Console.WriteLine(low);
+            result = low;
+         }
+         if (profitHigher == profitLow)
+         {
+            string equally = "Прибыльных " + profitHigher + " и убыточных " + profitLow + " подразделений поровну";
+            Console.WriteLine(equally);
+            result = equally;
+         }
+
+         return result;
+      }
+
+      // Метод поиска подразделения с наибольшим профицитом 
+      public static string ProfitMax(Business[] firm)
+      {
+         // Определяем подразделение с наибольшим профицитом 
+         // Cчитаем, что максимум - это первый элемент структуры
+         double max = firm[0].Profit;
+         string company = firm[0].Company;
+         int row = 0;
+         while (row < firm.Length)
+         {
+            if (max < firm[row].Profit)
+            {
+               max = firm[row].Profit;
+               company = firm[row].Company;
+            }
+
+            row++;
+         }
+
+         string higher = "Подразделение с наибольшим профицитом: " + max + " - " + company;
+         Console.WriteLine(higher);
+         return higher;
       }
    }
 }
